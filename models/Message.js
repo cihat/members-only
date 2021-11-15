@@ -6,7 +6,8 @@ const MessageSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
+    autopopulate: { maxDepth: 1 }
   },
   title: {
     type: String,
@@ -30,6 +31,8 @@ const MessageSchema = new Schema({
 MessageSchema.virtual("date").get(function () {
   return DateTime.fromJSDate(this.timestamp).toFormat("yyyy-MM-dd HH:mm")
 })
+
+MessageSchema.plugin(require("mongoose-autopopulate"))
 
 const Message = mongoose.model('Message', MessageSchema);
 

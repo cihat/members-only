@@ -33,9 +33,12 @@ const UserSchema = new Schema({
   },
   messages: [{
     type: Schema.Types.ObjectId,
-    ref: 'Message'
+    ref: 'Message',
+    autopopulate: { maxDepth: 1 }
   }]
 })
+
+UserSchema.plugin(require('mongoose-autopopulate'));
 
 const User = mongoose.model('User', UserSchema);
 
