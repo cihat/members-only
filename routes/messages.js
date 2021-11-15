@@ -15,6 +15,7 @@ router.get("/", ensureAuthenticated, (req, res, next) => {
     res.render("messages", {
       title: "Messages Page",
       messages,
+      user: res.locals.currentUser
     })
   })
 })
