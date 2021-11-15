@@ -18,7 +18,7 @@ const MessageSchema = new Schema({
     type: String,
     required: true,
     minLength: 1,
-    maxLength: 1000
+    maxLength: 5000
   },
   timestamp: {
     type: Date,
