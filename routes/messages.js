@@ -1,9 +1,10 @@
 const express = require('express');
-const Message = require("../models/Message")
-const User = require("../models/User")
 const { ensureAuthenticated } = require('../helpers/auth');
 const { body, validationResult } = require("express-validator");
 const router = express.Router();
+
+const User = require("../models/User")
+const Message = require("../models/Message")
 
 //! Message Get
 router.get("/", ensureAuthenticated, (req, res, next) => {
@@ -13,9 +14,7 @@ router.get("/", ensureAuthenticated, (req, res, next) => {
 
     res.render("messages", {
       title: "Messages Page",
-      user: res.locals.currentUser,
       messages,
-      createdBy: req.user
     })
   })
 })

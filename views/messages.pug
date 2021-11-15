@@ -10,6 +10,11 @@ block content
   //- h1 Test 
   //- p= messages
 
+  h1 created by
+  p #{createdBy } asşdflkjasd
+
+  p= messages
+
   ul
     each message in messages
       li
@@ -18,6 +23,6 @@ block content
         p= message.text
         p Create Time: #{message.date}
 
-        a(href=`users/${createdBy._id}`) Created by #{createdBy.username}
+        a(href=`users/${message.user._id}`) Created by #{message.user.username}
   
   i Date Format: dd-MM-yyyy HH:mm
