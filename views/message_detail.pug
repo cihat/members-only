@@ -1,0 +1,17 @@
+extends layout
+block head
+  title= title
+
+block content
+  h1= title 
+
+  h2 Title: 
+  p= message.title 
+  h2 Text: 
+  p= message.text
+
+  button 
+    a(href=`/messages/${message._id}/delete`) Delete Message
+  br
+  button 
+    a(href=`/messages/${message._id}/update`) Update Message

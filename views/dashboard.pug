@@ -1,0 +1,11 @@
+//- page-a.pug
+extends layout.pug
+
+block scripts
+  //- script(src='/jquery.js')
+  //- script(src='/pets.js')
+
+block content
+  h1 Dashboard Page #{user.username}
+
+  a(href="/messages") Go to the Messages Page

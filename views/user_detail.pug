@@ -1,0 +1,16 @@
+extends layout
+block head
+  title= title
+
+block content
+  h1= title
+
+  h1= user.username
+
+  h2 Messages 
+
+  ol
+    each message in messages
+      li
+        h3 #{message.title}
+        h4 #{message.text}

@@ -1,0 +1,19 @@
+extends layout
+block head
+  title= title
+
+block content
+  h1= title 
+  form.auth-form(action="/messages/create-message" method="POST")
+    h2= title 
+    div.title-container
+      label(for="messageTitle") Title:
+      input#messageTitle(type="text" name="messageTitle" required="true" maxLength="50")
+    hr
+    div.text-container
+      label(for="messageText") Message:
+      textarea#messageText(type="text" name="messageText" required="true" placeholder=("Please enter your text📝") rows="20" cols="80")
+    button(type="submit") Submit Message
+
+  if (errors)
+    p #{errors}

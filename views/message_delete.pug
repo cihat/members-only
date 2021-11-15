@@ -1,0 +1,16 @@
+extends layout
+block head
+  title= title
+
+block content
+  h1= title 
+
+  p This message delete ? Are you okey ?
+
+  form(method='POST' action='')
+    div
+      input(type='hidden', name='id', required='true', value=message._id )
+      button(type='submit') Delete
+
+  //- button 
+  //-   a(href=`/messages/${message._id}/delete`) Delete

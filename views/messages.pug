@@ -1,0 +1,23 @@
+extends layout
+block head
+  title= title
+
+block content
+  h1= title
+
+  a(href="/messages/create-message") Create Message
+
+  //- h1 Test 
+  //- p= messages
+
+  ul
+    each message in messages
+      li
+        a(href=`/messages/${message._id}`) 
+          h2= message.title
+        p= message.text
+        p Create Time: #{message.date}
+
+        a(href=`users/${createdBy._id}`) Created by #{createdBy.username}
+  
+  i Date Format: dd-MM-yyyy HH:mm

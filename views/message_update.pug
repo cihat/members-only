@@ -1,0 +1,16 @@
+extends layout
+block head
+  title= title
+
+block content
+  h1= title 
+  form(action=`/messages/${message._id}/update` method="POST") 
+    div.title-container
+      label(for="messageTitle") Title:
+      input#messageTitle(type="text" name="messageTitle" required="true" default maxLength="50" value=(message == "" ? '' : message.title))
+    hr
+    br
+    div.text-container
+      label(for="messageText") Message:
+      textarea#messageText(type="text" name="messageText" required="true" placeholder=(message == "" ? '' : message.text) rows="20" cols="80") #{message.text}
+    button(type="submit") Submit Message
