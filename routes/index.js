@@ -6,14 +6,20 @@ const { body, validationResult } = require("express-validator");
 const { forwardAuthenticated, ensureAuthenticated } = require('../helpers/auth');
 
 const User = require("../models/User")
+const Message = require("../models/Message")
 
 router.get('/', forwardAuthenticated, (req, res, next) => {
   res.redirect('/login');
 });
 
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
-  res.render('dashboard', {
-    user: req.user
+  User.findById(res.locals.currentUser).populate("messages").exec((err, messages) => {
+    if (err) return next(err)
+    res.render("dashboard", {
+      messages,
+      user: req.user,
+      currentUser: res.locals.currentUser
+    })
   })
 })
 
