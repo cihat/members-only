@@ -64,10 +64,14 @@ router.post("/create-message", ensureAuthenticated, [
 router.get("/:id", ensureAuthenticated, (req, res, next) => {
   Message.findById(req.params.id, (err, message) => {
     if (err) return next(err)
+    const editablePost = req.user._id.equals(message.user._id)
+    console.log("editable: ", editablePost)
+
     res.render("message_detail", {
       title: "Message Detail",
       user: res.locals.currentUser,
-      message
+      message,
+      editablePost
     })
   })
 })
