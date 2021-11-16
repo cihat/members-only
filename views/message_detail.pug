@@ -10,8 +10,14 @@ block content
   h2 Text: 
   p= message.text
 
-  button 
-    a(href=`/messages/${message._id}/delete`) Delete Message
-  br
-  button 
-    a(href=`/messages/${message._id}/update`) Update Message
+  a(href=`/users/${message.user._id}`)
+    p Created by 
+      b 
+        em @#{message.user.username}
+
+  if editablePost
+    button 
+      a(href=`/messages/${message._id}/delete`) Delete Message
+    br
+    button 
+      a(href=`/messages/${message._id}/update`) Update Message
