@@ -6,6 +6,15 @@ block scripts
   //- script(src='/pets.js')
 
 block content
-  h1 Dashboard Page #{user.username}
+  h1 Dashboard Page #{currentUser.username}
 
   a(href="/messages") Go to the Messages Page
+  br
+  hr
+
+  h2 My Messages
+
+  ol 
+    each message in currentUser.messages 
+      li
+        a(href=`/messages/${message._id}`) #{message.title}
