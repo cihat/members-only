@@ -21,10 +21,21 @@ const MessageSchema = new Schema({
     minLength: 1,
     maxLength: 5000
   },
+  likes: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    autopopulate: { maxDepth: 1 }
+  }],
+  // comments: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Comment',
+  //   autopopulate: { maxDepth: 1 }
+  // }],
   timestamp: {
     type: Date,
     default: Date.now,
     required: true
+
   }
 })
 
