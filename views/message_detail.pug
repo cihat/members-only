@@ -10,6 +10,21 @@ block content
   h2 Text: 
   p= message.text
 
+  //- p Likes
+  //- ul 
+  //-   each like in message.likes 
+  //-     li 
+
+  form(action=`/messages/${message._id}/like` method="POST") 
+    button(type="submit") Like ?
+  form(action=`/messages/${message._id}/dislike` method="POST") 
+    button(type="submit") Dislike ?
+
+  p Likes 
+  ul
+    each like in message.likes 
+      li #{like.username}
+
   a(href=`/users/${message.user._id}`)
     p Created by 
       b 

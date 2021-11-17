@@ -65,13 +65,42 @@ router.get("/:id", ensureAuthenticated, (req, res, next) => {
   Message.findById(req.params.id, (err, message) => {
     if (err) return next(err)
     const editablePost = req.user._id.equals(message.user._id)
-    console.log("editable: ", editablePost)
 
     res.render("message_detail", {
       title: "Message Detail",
       user: res.locals.currentUser,
       message,
       editablePost
+    })
+  })
+})
+
+//! Message Like Post
+router.post("/:id/like", ensureAuthenticated, (req, res, next) => {
+  Message.findById(req.params.id, (err, message) => {
+    if (err) return next(err)
+
+    if (message.likes.includes(req.user._id) || message.likes.length == 0) {
+      message.likes.push(req.user._id)
+    }
+    message.save((err) => {
+      if (err) return next(err)
+      res.redirect(`/messages/${req.params.id}`)
+    })
+  })
+})
+
+//! Message Unlike Post
+router.post("/:id/dislike", ensureAuthenticated, (req, res, next) => {
+  Message.findById(req.params.id, (err, message) => {
+    if (err) return next(err)
+
+    if (message.likes.length >= 0 && !message.likes.includes(req.user._id)) {
+      message?.likes?.pop(req.user._id)
+    }
+    message.save((err) => {
+      if (err) return next(err)
+      res.redirect(`/messages/${req.params.id}`)
     })
   })
 })
